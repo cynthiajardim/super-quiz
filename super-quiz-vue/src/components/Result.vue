@@ -1,7 +1,7 @@
 <template>
     <div class="result" :class="{wrong:!estaCorreta}">
         <span v-if="estaCorreta">Resposta correta!</span>
-        <span v-else>Resposta incorreta!</span>
+        <span v-else>Resposta incorreta :(</span>
         <button @click="$emit('proxQuestao')">Próxima questão ➡</button>
     </div>
 </template>
