@@ -2,8 +2,7 @@
     <div class="question">
         <span>{{questao.text}}</span>
         <ul class="answers">
-            <li v-for="(resposta, i) in questao.answers" :key="resposta">
-                <!-- <span class="number"> {{ i+1 }} </span> -->
+            <li v-for="resposta in questao.answers" :key="resposta" @click="$emit('respostaEscolhida', resposta.correct)">
                 <span class="text"> {{ resposta.text }} </span>
             </li>
         </ul>
@@ -49,6 +48,10 @@ export default {
         cursor: pointer;
     }
 
+    .answers li:hover{
+        transform: scale(1.1); 
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    }
     .answers .number {
         padding: 10px;
         background-color: #b5873b;

@@ -2,6 +2,7 @@
     <div class="result" :class="{wrong:!estaCorreta}">
         <span v-if="estaCorreta">Resposta correta!</span>
         <span v-else>Resposta incorreta!</span>
+        <button @click="$emit('proxQuestao')">Próxima questão ➡</button>
     </div>
 </template>
 
@@ -14,8 +15,7 @@ export default {
 <style>
     .result {
         height: 400px;
-        color: #000;
-        background-color: #FFF;
+        color: #2c5023;
         width: 70%;
         border-radius: 20px;
         font-size: 5.5rem;
@@ -23,8 +23,7 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background-color: #89c454;
-        color: #30863d;
+        background-color: #5f9253;
     }
 
     .result hr {
@@ -32,8 +31,8 @@ export default {
     }
 
     .result.wrong {
-        background-color: #f05250;
-        color: #bb2814;
+        background-color: #e78a88;
+        color: #a33634;
     }
 
     .result button {
@@ -42,12 +41,21 @@ export default {
         padding: 10px 20px;
         font-size: 1.7rem;
         border-radius: 8px;
-        background-color: #FFF;
-        color: #30863d;
+        background-color: #2c5023;
+        color: #6f9965;
         font-weight: 600;
+        margin-top: 50px;
+        cursor: pointer;
+        border: none;
     } 
 
     .result.wrong button {
-        color: #bb2814;
+        background-color: #a33634;
+        color: #ffefd5;
+    }
+
+    .result button:hover{
+        transform: scale(1.1); 
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
     }
 </style>

@@ -1,8 +1,10 @@
 <template>
 	<div id="app">
 		<h1>Quiz</h1>
-		<Question :questao="questoes[numQuestao]" v-if="exibindoQuestao"></Question>
-		<Result v-else :estaCorreta="escolha"></Result>
+		<transition name="flip" mode="out-in">
+			<Question :questao="questoes[numQuestao]" v-if="exibindoQuestao" @respostaEscolhida="exibirResultado"></Question>
+			<Result v-else :estaCorreta="escolha" @proxQuestao="proximaQuestao"></Result>
+		</transition>
 	</div>
 </template>
 
@@ -14,6 +16,7 @@ import Result from './components/Result.vue';
 export default {
 	data(){
 		return {
+			questoesSelecionadas: [],
 			numQuestao: this.geraNumQuestaoAleat(),
 			questoes: questions,
 			exibindoQuestao: true,
@@ -27,6 +30,23 @@ export default {
 	methods:{
 		geraNumQuestaoAleat(){
 			return Math.floor(Math.random() * 11)
+
+			//TO-DO:verificar se questão já foi exibida antes  
+			// let num;
+			// do{
+			// 	num = Math.floor(Math.random() * 11)
+			// }while(this.questoesSelecionadas.includes(num))
+
+			// this.questoesSelecionadas.push(num)
+			// return num
+		},
+		exibirResultado(escolha){
+			this.escolha = escolha
+			this.exibindoQuestao = false
+		},
+		proximaQuestao(){
+			this.exibindoQuestao = true
+			this.numQuestao = this.geraNumQuestaoAleat()
 		}
 	}
 }
