@@ -5,6 +5,7 @@
 			<Question :questao="questoes[numQuestao]" v-if="exibindoQuestao" @respostaEscolhida="exibirResultado"></Question>
 			<Result v-else :estaCorreta="escolha" @proxQuestao="proximaQuestao"></Result>
 		</transition>
+		<Copyright></Copyright>
 	</div>
 </template>
 
@@ -12,6 +13,7 @@
 import Question from './components/Question.vue';
 import questions from './util/questions'
 import Result from './components/Result.vue';
+import Copyright from './components/Copyright.vue';
 
 export default {
 	data(){
@@ -25,7 +27,8 @@ export default {
 	},	
 	components: {
 		Question,
-		Result
+		Result,
+		Copyright
 	},
 	methods:{
 		geraNumQuestaoAleat(){
